@@ -19,16 +19,18 @@ class MyModule extends Module
 
     public function install()
     {
-        return parent::install() && $this->registerHook('displayProductPriceBlock');
+        return parent::install()
+            && $this->registerHook('displayExpressCheckout');
     }
 
     public function uninstall()
     {
-        return parent::uninstall() && $this->unregisterHook('displayProductPriceBlock');
+        return parent::uninstall()
+            && $this->unregisterHook('displayExpressCheckout');
     }
 
-    public function hookDisplayProductPriceBlock(){
-//        return var_dump(($product));
-        return '';
+    public function hookDisplayExpressCheckout()
+    {
+        return $this->display(__FILE__, 'views/templates/cartbutton.tpl');
     }
 }
